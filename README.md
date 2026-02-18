@@ -1,259 +1,207 @@
-# Jalpc. [![Analytics](https://ga-beacon.appspot.com/UA-73784599-1/welcome-page)](https://github.com/jarrekk/Jalpc)
+# Grape-Theme
 
-[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
-[![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
-[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badge/)
+![home](./assets/img/home.png)
 
-<https://jarrekk.github.io/Jalpc/>
+블로그뿐만 아니라 포트폴리오 페이지도 지원하는 Grape-Theme를 자유롭게 사용하세요.
 
-<http://www.jarrekk.com>  -- Personal website
+Welcome to Grape Theme!  It is good for a portfolio as well as a blog.
+<br>
+Customize Grape-Theme and use it for free.
 
-![Blog](https://github.com/jarrekk/Jalpc/raw/master/readme_files/Jalpc.png)
+[Demo](https://grape-theme.netlify.com)
 
-- [3 steps to setup this theme at your website!](#3-steps-to-setup-this-theme-at-your-website)
-- [Features](#features)
-  - [Index page](#index-page)
-    - [`_data/*.yml`](#_datayml)
-  - [Chart Skills](#chart-skills)
-  - [Categories in blog page](#categories-in-blog-page)
-  - [Pagination](#pagination)
-  - [Page views counter](#page-views-counter)
-  - [Multilingual Page](#multilingual-page)
-  - [Web analytics](#web-analytics)
-  - [Comment](#comment)
-  - [Share](#share)
-  - [Search engines](#search-engines)
-  - [Compress CSS and JS files](#compress-css-and-js-files)
-- [Put in a Jalpc Plug](#put-in-a-jalpc-plug)
-- [Upgrading Jalpc](#upgrading-jalpc)
-  - [Ensure there's an upstream remote](#ensure-theres-an-upstream-remote)
-  - [Pull in the latest changes](#pull-in-the-latest-changes)
-- [Todo](#todo)
-- [Donate Jalpc](#donate-jalpc)
-- [Wiki](#wiki)
-- [Ad](#ad)
 
-This is a simple, beautiful and swift theme for Jekyll. It's mobile first, fluidly responsive, and delightfully lightweight.
 
-If you're completely new to Jekyll, I recommend checking out the documentation at <http://jekyllrb.com> or there's a tutorial by Smashing Magazine.
+## Installation
 
-# 3 steps to setup this theme at your website!
+1. Fork and clone the Grape Theme repo
 
-Here is a [document](https://jarrekk.github.io/Jalpc/html/2017/01/31/3-steps-to-setup-website-with-Jalpc.html) of how to setup this theme with 3 steps and a [wiki](https://github.com/jarrekk/Jalpc/wiki/How-to-add-posts) of how to add posts. If you have any **questions** please ask me at [GitHub Issues](https://github.com/jarrekk/Jalpc/issues).
+   ```
+   git clone https://github.com/naye0ng/Grape-Theme.git
+   ```
 
-# Features
+2. Install Jekyll 
 
-## Index page
+   ```
+   gem install jekyll
+   ```
 
-The index page is seprated into several sections and they are located in `_includes/sections`,the configuration is in `_data/landing.yml` and section's detail configuration is in `_data/*.yml`.
+3. Install the theme's dependencies
 
-### `_data/*.yml`
+   ```
+   bundle install
+   ```
 
-These files are used to dynamically render pages, so you almost don't have to edit *html files* to change your own theme, besides you can use `jekyll serve --watch` to reload changes.
+4. Update `_config.yml` and `projects.yml` with your own settings.
 
-The following is mapping between *yml files* to *sections*.
+5. Run the Jekyll server
 
-* landing.yml ==> index.html
-* index/language.yml ==> index.html
-* index/careers.yml  ==>  _includes/sections/career.html
-* index/skills.yml  ==>  _includes/sections/skills.html
-* index/projects.yml  ==>  _includes/sections/projects.html
-* index/links.yml  ==>  _includes/sections/links.html
+   ```
+   bundle exec jekyll serve
+   ```
 
-This *yml file* is about blog page navbar
+   
 
-* blog.yml ==> _includes/header.html
+## Customizing
 
-The following is mapping between *yml files* to *donation*
+Grape-Theme에서는 자랑할 만한 두 가지 기능을 제공합니다. 홈 화면의 프로필 섹션과 포트폴리오 페이지의 프로젝트, 상세 프로필 기능이 그것 입니다. 이 모든 기능들은  `_config.yml` 와 `projects.yml` 파일을 수정하는 것만으로도 충분합니다.
 
-* donation/donationlist.yml ==> blog/donate.html
-* donation/alipay.yml  ==>  blog/donate.html
-* donation/wechat_pay.yml ==> blog/donate.yml
+Grape-Theme has two great features: the profile section and the project section of the portfolio page. Just by changing  `_config.yml` and `projects.yml` , you can use all of these features.
 
-## Chart Skills
 
-I use [Chart.js](http://www.chartjs.org/) to show skills, the type of skills' chart is radar, if you want to custom, please read document of Chart.js and edit **_includes/sections/skills.html** and **_data/index/skills.yml**.
 
-## Categories in blog page
+### Blog Settings
 
-In blog page, we categorize posts into several categories by url, all category pages use same template html file - `_includes/category.html`.
+기본적인 블로그 설정은 `config.yml` 에서 가능합니다.
 
-For example: URL is `http://127.0.0.1:4000/python/`. In `_data/blog.yml`, we define this category named `Python`, so in `_includes/category.html` we get this URL(/python/) and change it to my category(Python), then this page are posts about **Python**. The following code is about how to get url and display corresponding posts in  `_includes/category.html`.
+The blog configuration is available in `config.yml`.
 
-```html
-<div class="row">
-    <div class="col-lg-12 text-center">
-        <div class="navy-line"></div>
-        {% assign category = page.url | remove:'/' | capitalize %}
-        {% if category == 'Html' %}
-        {% assign category = category | upcase %}
-        {% endif %}
-        <h1>{{ category }}</h1>
-    </div>
-</div>
-<div class="wrapper wrapper-content  animated fadeInRight blog">
-    <div class="row">
-        <ul id="pag-itemContainer" style="list-style:none;">
-            {% assign counter = 0 %}
-            {% for post in site.categories[category] %}
-            {% assign counter = counter | plus: 1 %}
-            <li>
-```
-
-## Pagination
-
-The pagination in jekyll is not very perfect,so I use front-end web method,there is a [blog](http://www.jarrekk.com/html/2016/06/04/jekyll-pagination-with-jpages.html) about the method and you can refer to [jPages](http://luis-almeida.github.io/jPages).
-
-## Page views counter
-
-Many third party page counter platforms are too slow,so I count my website page view myself,the javascript file is [static/js/count.min.js](https://github.com/jarrekk/jalpc_jekyll_theme/blob/gh-pages/static/js/count.min.js) ([static/js/count.js](https://github.com/jarrekk/jalpc_jekyll_theme/blob/gh-pages/static/js/count.js)),the backend API is written with flask on [Vultr VPS](https://www.vultr.com/), detail code please see [ztool-backhend-mongo](https://github.com/Z-Tool/ztool-backhend-mongo).
-
-## Multilingual Page
-
-The landing page has multilingual support with the [i18next](http://i18next.com) plugin.
-
-Languages are configured in the `_data/index/language.yml` file.
-
-> Not everyone needs this feature, so I make it very easy to remove it, just clear content in file `_data/language.yml` and folder `static/locales/`.
-
-About how to custom multilingual page, please see [wiki](https://github.com/jarrekk/Jalpc/wiki/Multilingual-Page).
-
-## Web analytics
-
-I use [Google analytics](https://www.google.com/analytics/) and [GrowingIO](https://www.growingio.com/) to do web analytics, you can choose either to realize it,just register a account and replace id in `_config.yml`.
-
-## Comment
-
-I use [Disqus](https://disqus.com/) to realize comment. You should set disqus_shortname and get public key and then, in `_config.yml`, edit the disqus value to enable Disqus.
-
-## Share
-
-I use [AddToAny](https://www.addtoany.com/) to share my blog on other social network platform. You can go to this website to custom your share buttons and paste code at `_includes/share.html`.
-
-![share](https://github.com/jarrekk/Jalpc/raw/master/readme_files/share.png)
-
-## Search engines
-
-I use javascript to realize blog search,you can double click `Ctrl` or click the icon at lower right corner of the page,the detail you can got to this [repository](https://github.com/androiddevelop/jekyll-search). Just use it.
-
-![search](https://github.com/jarrekk/Jalpc/raw/master/readme_files/search.gif)
-
-## Compress CSS and JS files
-
-All CSS and JS files are compressed at `/static/assets`.
-
-I use [UglifyJS2](https://github.com/mishoo/UglifyJS2), [clean-css](https://github.com/jakubpawlowicz/clean-css) to compress CSS and JS files, customised CSS files are at `_sass` folder which is feature of [Jekyll](https://jekyllrb.com/docs/assets/). If you want to custom CSS and JS files, you need to do the following:
-
-1. Install [NPM](https://github.com/npm/npm) then install **UglifyJS2** and **clean-css**: `npm install -g uglifyjs; npm install -g clean-css`, then run `npm install` at root dir of project.
-2. Compress script is **build.js**
-3. If you want to add or remove CSS/JS files, just edit **build/build.js** and **build/files.conf.js**, then run `npm run build` at root dir of project, link/src files will use new files.
-
-OR
-
-Edit CSS files at `_sass` folder.
-
-# Local tests/development
-
-First, install Jekyll on terminal:
-
-```shell
-bundle install
-```
-
-Then, execute:
-
-```shell
-bundle exec jekyll serve
-```
-
-# Put in a Jalpc Plug
-
-If you want to give credit to the Jalpc theme with a link to my personal website <http://www.jarrekk.com>, that'd be awesome. No worries if you don't.
-
-# Upgrading Jalpc
-
-Jalpc is always being improved by its users, so sometimes one may need to upgrade.
-
-## Ensure there's an upstream remote
-
-If `git remote -v` doesn't have an upstream listed, you can do the following to add it:
+#### Site configuration
 
 ```
-git remote add upstream https://github.com/jarrekk/Jalpc.git
+baseurl: "{subpath}"
+url : "https://{username}.github.io"
+
+theme_settings :
+  title : {blog title}
 ```
 
-## Pull in the latest changes
+
+
+#### Profile Settings
+
+간단한 프로필 정보는 홈 화면에서 출력되며, experience 및 skills 부분은 포트폴리오 페이지에서 함께 보여집니다.
+
+Profile is displayed on the index page, and also experience and skills are displayed on the portfolio page.
 
 ```
-git pull upstream gh-pages
+profile :
+  image : assets/img/{prorile image}
+    username : {username}
+    description : 
+    experience :
+      - start :
+        end : 
+        experience : {company name}, {title}
+     skills : 
+      - skill : 
+        value : 85  # Percent value
 ```
 
-There may be merge conflicts, so be sure to fix the files that git lists if they occur. That's it!
 
-# Testing Locally
-To test your site locally, you’ll need
 
-- [ruby](https://www.ruby-lang.org/en/)
-- the [github-pages](https://github.com/github/pages-gem) gem
+#### Pagination
 
-## Installing ruby
-There are [lots of different ways to install ruby](https://www.ruby-lang.org/en/documentation/installation/).
+한 페이지에서 보여질 포스팅 개수를 정의합니다.
 
-In Mac OS X, older versions of ruby will already be installed. But I use the [Ruby Version Manager (RVM)](https://rvm.io/) to have a more recent version. You could also use [Homebrew](https://brew.sh/).
-
-In Windows, use [RubyInstaller](https://rubyinstaller.org/). (In most of this tutorial, I’ve assumed you’re using a Mac or some flavor of Unix. It’s possible that none of this was usable for Windows folks. Sorry!)
-
-## Installing the github-pages gem
-Run the following command:
+Defines the number of posts to be shown on one page.
 
 ```
-gem install github-pages
+paginate: 5
 ```
 
-This will install the github-pages gem and all dependencies (including [jekyll](https://jekyllrb.com/)).
 
-## Later, to update the gem, type:
 
-```
-gem update github-pages
-```
+#### Disqus
 
-Testing your site locally
-To construct and test your site locally, go into the directory and type
+[Disqus shortname](https://help.disqus.com/en/articles/1717111-what-s-a-shortname)을 설정하고, 포스팅 속성에 `comments : true` 를 추가하면 블로그 글에서 댓글을 사용할 수 있습니다.
 
-```
-jekyll build
+you can use the comments by following [document](https://help.disqus.com/en/articles/1717111-what-s-a-shortname) and adding a `comments : true` 
+
+``` 
+disqus_shortname :
 ```
 
-This will create (or modify) a `_site/ directory`, containing everything from `assets/`, and then the `index.md` and all `pages/*.md` files, converted to html. (So there’ll be `_site/index.html` and the various `_site/pages/*.html.`)
 
-Type the following in order to “serve” the site. This will first run build, and so it does not need to be preceded by `jekyll build`.
+
+### Portfolio Settings
+
+![home](./assets/img/portfolio.png)
+
+프로젝트 세팅은 `_data/projects.yml`에서 가능합니다.
+
+The Project configuration is available in `_data/projects.yml`.
+
+포트폴리오 페이지에서는 프로젝트 목록과 상세보기를 모달로 지원합니다. 물론 상세보기는 선택적이며, 상세값이 `modal : False`인 경우 모달 버튼은 생성되지 않습니다.
+
+The portfolio page provides projects and detailed views by modal.   If `modal : False` is selected, modal will not be displayed on site. 
+
+- **print** : 
+  
+  -  `print : True` 를 선택한다면, 블로그의 홈 화면에서도 프로젝트의 정보가 출력됩니다.
+  - If `print : True` is selected, it will be displayed on landing page
+  
+   ![print project](./assets/img/print-project.png)
+  
+- **modal** 
+  - `modal : True` 를 선택한다면 모달 버튼이 활성와 됩니다.
+  
+  - If `modal : True` is selected, modal will be displayed on the Portfolio page
+  
+    ![home](./assets/img/modal.png)
 
 ```
-jekyll serve
+print : True
+modal : True  
+```
+당신의 프로젝트에 대한 링크와 상세 설명을 아래와 같이 추가하세요.
+
+Add details(link, description) about your projects
+
+```
+url : https://github.com/naye0ng/Grape-Theme # Full URL
+image : "portfolio.png" # path: assets/project/
+date : 2019.06.09 - 2019.07.11
+title : 
+summary : 
+description :  
+# modal contents
+contents :
+  - title :
+    image :      	    
+    description : 
 ```
 
-Now open your browser and go to `http://localhost:4000/site-name/`
 
-# Todo
-- [ ] `jekyll server --watch` mode need to use original CSS/JS files
-- [ ] User can customise index page's section title.
-- [x] Non-github projects also have links.
-- [ ] Add some custom color themes for selection(Nav bar, background, words, dominant hue).
 
-# Donate Jalpc
-If this project let you enjoy your blog time, you can give me a cup of coffee :)
+### Colors
 
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/jarrekk)
+블로그의 컬러들은 `_sass/base/_variable.scss` 에서 한번에 변경이 가능합니다.
 
-# Wiki
+You can change colors at once. colors are in `_sass/base/_variable.scss`
 
-* [Multilingual Page](https://github.com/jarrekk/Jalpc/wiki/Multilingual-Page)
-* [How to add posts](https://github.com/jarrekk/Jalpc/wiki/How-to-add-posts)
-* [Change Log](https://github.com/jarrekk/Jalpc/wiki/Change-Log)
-* [Contributors](https://github.com/jarrekk/Jalpc/wiki/Contributors)
-* [Thanks to the following](https://github.com/jarrekk/Jalpc/wiki/Thanks-to-the-following)
 
-# Ad
-[Jalpc-A](https://github.com/Jack614/Jalpc-A): another Jekyll theme written by [AngularJS](https://angularjs.org/).
+
+## Posts in Grape theme
+
+이 블로그의 모든 포스팅 스타일은  `_sass/base/_utility.scss` 에 정의되어 있으며 [Demo page](https://grape-theme.netlify.com/2019/06/08/markdown-and-html.html)와 [Demo page](https://grape-theme.netlify.com/2019/06/09/grape-theme-style.html)에서 여러 태그들의 출력을 확인할 수 있습니다.
+
+You can confirm how to draw tags at [here](https://grape-theme.netlify.com/2019/06/08/markdown-and-html.html) and [here](https://grape-theme.netlify.com/2019/06/09/grape-theme-style.html)
+
+### Create a new post
+
+1. Create a `.md` inside `_posts` folder
+
+   ```
+   2019-07-11-grape-theme.md
+   ```
+   > 한글로 파일 이름을 만드는 경우, 구글 검색을 붙였을때 문제가 발생합니다. 되로록 영어를 사용해주세요:D
+2. Write the [Front Matter](https://jekyllrb.com/docs/front-matter/) and content in the file.
+
+   ```
+   ---
+   layout: post
+   title: title
+   subtitle : subtitle
+   tags: [tag1, tag2]
+   author: 
+   comments : 
+   ---
+   ```
+
+
+
+## License
+
+The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 

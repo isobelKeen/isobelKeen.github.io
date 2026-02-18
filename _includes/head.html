@@ -1,40 +1,45 @@
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1; minimum-scale=1; user-scalable=no;">
-  {% if page.desc %}
-    <meta content="{{ page.desc }}" name="description">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--Favicon-->
+  <link rel="shortcut icon" href="{{ site.baseurl }}/{{ site.theme_settings.favicon }}" type="image/x-icon">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css"
+    integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
+
+  <!-- Spoqa Han Sans -->
+  <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+
+  <!-- OG Tag -->
+  {% if page.title %}
+  {% assign title = site.theme_settings.title | append: "-" | append: page.title %}
+  {% else %}
+  {% assign title = site.theme_settings.title %}
   {% endif %}
-  {% if page.keywords %}
-    <meta name="keywords" content="{{ page.keywords }}">
-  {% endif %}
-  <meta name="author" content="{{ site.author.name }}">
-  <meta name="baseurl" content="{{ site.baseurl }}">
+  <meta name="title" content="{{ title }}" />
+  <meta name="author" content="{{ site.theme_settings.profile.username }}" />
+  <meta name="keywords" content="{{ page.tags | join: ',' }}" />
+  <meta name="description" content="{{ page.subtitle }}" />
+  <meta name="robots" content="index,follow" />
 
-  <title>
-    {% if page.title != "index" %}
-        {{ site.title }}|{{ page.title }}
-    {% else %}
-        {{ site.title }}
-    {% endif %}
-  </title>
-  <!-- favicon -->
-  <link rel="shortcut icon" href="{{ "/static/assets/img/favicon.ico" | prepend: site.baseurl }}">
+  <meta property="og:title" content="{{ title }}" />
+  <meta property="og:description" content="{{ page.subtitle }}" />
+  <meta property="og:type" content="website, blog" />
+  <meta property="og:image"
+    content="{{ site.url }}/{% if page.image %}{{ page.image }}{% else %}{{ site.theme_settings.profile.image }}{% endif %}" />
+  <meta property="og:site_name" content="{{ site.theme_settings.title }}" />
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
 
-  <!-- Main CSS -->
-  <link href="{{ "/static/assets/app-20210315.min.css" | prepend: site.baseurl }}" rel="stylesheet">
-  <link href="{{ "/static/css/custom.css" | prepend: site.baseurl }}" rel="stylesheet">
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="{{ title }}" />
+  <meta name="twitter:description" content="{{ page.subtitle }}" />
+  <meta name="twitter:image"
+    content="{{ site.url }}/{% if page.image %}{{ page.image }}{% else %}{{ site.theme_settings.profile.image }}{% endif %}" />
 
-  <!-- Main Scripts -->
-  <script src="{{"/static/assets/app-20210315.min.js"| prepend: site.baseurl }}"></script>
-  <script src="{{"/static/assets/blog-20210315.min.js"| prepend: site.baseurl }}"></script>
-
-  <!-- Google AdSense -->
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: "ca-pub-6196184620210315",
-      enable_page_level_ads: true
-    });
-  </script>
+  <title>{{ title }}</title>
 </head>
