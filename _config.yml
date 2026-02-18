@@ -10,20 +10,20 @@ theme_settings :
   # Profile Settings
   profile :
     image : assets/img/smile.png
-    username : isobelKeen
+    username : Isobel Keen
     description : Data Scientist #creator of Grape-Theme! Grape-Theme is my first jekyll theme and you can customize this theme easily.
     experience :
-      - start : 2017-05-03
-        end : 2018-05-06
-        experience : company name, title
+      - start : 2022-14-02
+        end : 2025-23-01
+        experience : Services Australia, Data Scientist
     skills : 
-      - skill : HTML5 & CSS
+      - skill : Python & R & HTML5 & CSS
         value : 85  # Percent value
         
   # Icons
   icons :
-    email:  # Full email address, e.g. "sample@google.com"
-    linkedin:  # Full URL 
+    email:  isobel.keen@gmail.com # Full email address, e.g. "sample@google.com"
+    linkedin:  https://www.linkedin.com/in/isobel-keen/ # Full URL 
     github: isobelKeen
     gitlab: 
     bitbucket: 
