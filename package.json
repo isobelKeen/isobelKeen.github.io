@@ -16,7 +16,9 @@
 		"format": "biome format --write",
 		"validate": "pnpm lint && pnpm test:ci && pnpm test:e2e:ci",
 		"build": "vite build",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"predeploy": "pnpm run build",
+		"deploy": "gh-pages -d dist"
 	},
 	"dependencies": {
 		"@tanstack/react-query": "5.90.10",
@@ -40,6 +42,7 @@
 		"@types/react-dom": "19.2.3",
 		"@vitejs/plugin-react": "5.1.1",
 		"@vitest/coverage-v8": "4.0.13",
+		"gh-pages": "^6.3.0",
 		"happy-dom": "20.0.10",
 		"msw": "2.12.3",
 		"tailwindcss": "4.1.17",
