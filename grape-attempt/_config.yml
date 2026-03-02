@@ -11,8 +11,7 @@ theme_settings :
   profile :
     image : assets/img/smile.png
     username : Isobel Keen
-    description : Data Scientist #creator of Grape-Theme! Grape-Theme is my first jekyll theme and you can customize this theme easily.
-    experience :
+    description : Data Scientist
       - start : 2022-14-02
         end : 2025-23-01
         experience : Services Australia, Data Scientist
